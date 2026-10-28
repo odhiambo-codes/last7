@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Queen ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3, #fad0c4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    text-align: center;
+}
+
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 550px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    animation: fadeIn 1.2s ease;
+}
+
+h1 { color: #ff2e63; }
+
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    background: #ff2e63;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: #ff004f;
+}
+
+input {
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    width: 80%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.heart {
+    position: absolute;
+    color: red;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="mainCard">
+    <h1>Hello  ❤️</h1>
+    <h1>Since you took the risk</h1>>
+    <p>Enter your first full name:</p>
+    <input type="text" id="herName" placeholder="Your Name">
+    <br>
+    <button onclick="startLove()">Continue 💕</button>
+</div>
+
+<script>
+let savedName = "";
+
+// 🔒 START LOVE FUNCTION
+function startLove() {
+    const inputName = document.getElementById("herName").value.trim();
+
+    if (inputName === "") {
+        alert("Please enter your name ❤️");
+        return;
+    }
+
+    // ✅ Only accept Quintavalyn
+    if (inputName === "Quintavalyn") {
+        savedName = inputName;
+
+        document.getElementById("mainCard").innerHTML = `
+            <h1>Access Granted ❤️</h1>
+            <p>Welcome ${savedName} 💕</p>
+            <button onclick="loveMessage()">💌 Love Message</button>
+            <button onclick="photoMemory()">📸 Our Memory</button>
+            <button onclick="proposal()">💍 Big Question</button>
+        `;
+    } 
+    // ❌ Any other name
+    else {
+        document.getElementById("mainCard").innerHTML = `
+            <h1 style="color:red;">You are not my love, access denied 🚫</h1>
+            <button onclick="location.reload()">Try Again</button>
+        `;
+    }
+}
+
+// 💌 LOVE MESSAGE
+function loveMessage() {
+    document.getElementById("mainCard").innerHTML = `
+        <h1>My Heart ❤️</h1>
+        <p>${savedName}, every moment with you feels magical.
+        You are my happiness, my peace, and my future.
+        I am grateful for you every single day.</p>
+        <button onclick="goBack()">Back</button>
+    `;
+    createHearts();
+}
+
+// 📸 PHOTO MEMORY
+function photoMemory() {
+    document.getElementById("mainCard").innerHTML = `
+        <h1>Our Beautiful Memory 📸</h1>
+        <p>You + Me = Forever 💞</p>
+        <img src="Here.jpg" alt="Her Photo">
+        <img src="Our.jpg" alt="Our Photo">
+        <br>
+        <button onclick="goBack()">Back</button>
+    `;
+    createHearts();
+}
+
+// 💍 PROPOSAL
+function proposal() {
+    document.getElementById("mainCard").innerHTML = `
+        <h1>${savedName} 💍</h1>
+        <p>Will you marry me and build a future together? 🥺❤️</p>
+        <button onclick="accepted()">YES ❤️</button>
+        <button onclick="acceptedd()">NOOO </button>
+    `;
+}
+
+// ✅ ACCEPTED
+function accepted() {
+    document.getElementById("mainCard").innerHTML = `
+        <h1>Best Decision Ever 😭❤️</h1>
+        <p>I promise to love you forever and always.</p>
+        <button onclick="goBack()">Back</button>
+    `;
+    createHearts();
+}
+// ✅ ACCEPTED
+function acceptedd() {
+    document.getElementById("mainCard").innerHTML = `
+        <h1></h1>
+        <p>This was just a dummy option. NOO cannot be the answer to my proposal  </p>
+        <button onclick="goBack()">Back</button>
+    `;
+    createHearts();
+}
+
+// 🔙 GO BACK TO MAIN MENU
+function goBack() {
+    document.getElementById("mainCard").innerHTML = `
+        <h1>${savedName}, You Mean Everything To Me 💖</h1>
+        <p>Choose your surprise:</p>
+        <button onclick="loveMessage()">💌 Love Message</button>
+        <button onclick="photoMemory()">📸 Our Memory</button>
+        <button onclick="proposal()">💍 Big Question</button>
+    `;
+}
+
+// 💖 HEARTS ANIMATION
+function createHearts() {
+    for(let i = 0; i < 25; i++) {
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+    }
+}
+</script>
+
+</body>
+</html>
